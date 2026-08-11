@@ -1,4 +1,4 @@
-// backend/server.js — Main Express Server
+// backend/server.js — Main Express Server (Vercel compatible)
 import 'dotenv/config';
 import express    from 'express';
 import cors       from 'cors';
@@ -13,8 +13,7 @@ import employeeRoutes from './routes/employees.js';
 import officeRoutes   from './routes/offices.js';
 import statsRoutes    from './routes/stats.js';
 
-const app  = express();
-const PORT = process.env.PORT || 5000;
+const app = express();
 
 // ── Middleware
 app.use(cors({
@@ -23,6 +22,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(morgan('dev'));
+
+// ── DB connect (lazy — for serverless)
+connectDB().catch(err => console.error('❌ DB:', err.message));
 
 // ── Health check
 app.get('/', (_, res) => res.json({
@@ -49,14 +51,13 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
 });
 
-// ── Start
-connectDB().then(() => {
+// ── Local dev server (NOT used on Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`\n✅ Carbon RMC Backend running on http://localhost:${PORT}`);
-    console.log(`📦 MongoDB connected`);
-    console.log(`🔗 Frontend: ${process.env.FRONTEND_URL || 'http://localhost:3000'}\n`);
   });
-}).catch(err => {
-  console.error('❌ DB Connection failed:', err.message);
-  process.exit(1);
-});
+}
+
+// ── Export for Vercel serverless
+export default app;
