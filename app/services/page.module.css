@@ -1,0 +1,72 @@
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.serviceCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.highlight {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.serviceIcon { font-size: 2.5rem; }
+
+.serviceTitle {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.serviceDesc { color: var(--text-muted); font-size: 0.875rem; line-height: 1.7; }
+
+.featureList { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; margin-top: 0.5rem; }
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+.featureCheck {
+  color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.serviceBtn { margin-top: 0.5rem; width: 100%; justify-content: center; }
+
+/* Why */
+.whySection {
+  background: radial-gradient(ellipse at center, rgba(212,160,23,0.04) 0%, transparent 70%);
+}
+
+.whyCard { text-align: center; display: flex; flex-direction: column; gap: 0.75rem; }
+
+.whyTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+}
+
+.whyDesc { color: var(--text-muted); font-size: 0.875rem; line-height: 1.7; }
+
+/* CTA */
+.cta {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, rgba(212,160,23,0.06), transparent);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 1024px) { .servicesGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .servicesGrid { grid-template-columns: 1fr; } }

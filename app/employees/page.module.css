@@ -1,0 +1,158 @@
+.filterRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Team Stats */
+.teamStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.teamStat {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.teamStatNum {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.teamStatLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Employee Grid */
+.empGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.empCard {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.empAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(212,160,23,0.15), rgba(212,160,23,0.05));
+  border: 2px solid var(--border-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empEmoji { font-size: 2.2rem; }
+
+.empInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.empName {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.empRole {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.empMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.empExp {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.empId {
+  font-size: 0.7rem;
+  color: rgba(212,160,23,0.5);
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+
+.linkedinBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0,119,181,0.15);
+  border: 1px solid rgba(0,119,181,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60A5FA;
+  transition: var(--transition);
+}
+
+.linkedinBtn:hover {
+  background: #0077B5;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* More note */
+.moreNote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Join Banner */
+.joinBanner {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, rgba(212,160,23,0.06), transparent);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 1200px) { .empGrid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px)  { .empGrid { grid-template-columns: repeat(2, 1fr); } .teamStats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px)  { .empGrid { grid-template-columns: 1fr; } .teamStats { grid-template-columns: repeat(2, 1fr); } }

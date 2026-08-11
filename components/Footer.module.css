@@ -1,0 +1,203 @@
+.footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* CTA Band */
+.ctaBand {
+  background: linear-gradient(135deg, rgba(212,160,23,0.12) 0%, rgba(212,160,23,0.04) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 0;
+}
+
+.ctaInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.ctaTitle {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.ctaSub { color: var(--text-muted); font-size: 0.9rem; }
+
+.ctaBtns {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Main */
+.main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  padding: 4rem 0;
+}
+
+/* Brand */
+.logo {
+  margin-bottom: 1.25rem;
+}
+
+.logoImg {
+  width: auto;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: brightness(1.05);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+}
+
+.logoName {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+/* CARB = Blue */
+.logoCarb { color: var(--blue-light); }
+
+/* ON = Orange */
+.logoOn   { color: var(--primary); }
+
+/* RMC = Black pill badge */
+.logoRmc {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: #0a0a0a;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 2px 7px 2px 8px;
+  font-family: var(--font-body);
+  width: fit-content;
+}
+
+.tagline {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+.certBadges {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Columns */
+.colTitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.colList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.colLink {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.colLink:hover { color: var(--primary); padding-left: 4px; }
+
+.arrow {
+  color: var(--primary);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Contact */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.contactItem {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.contactItem a {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.contactItem a:hover { color: var(--primary); }
+
+.contactIcon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+/* Bottom */
+.bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+
+.bottomInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.copy { color: var(--text-muted); font-size: 0.825rem; }
+
+.bottomLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.bottomLinks a {
+  color: var(--text-muted);
+  font-size: 0.825rem;
+  transition: color 0.2s;
+}
+
+.bottomLinks a:hover { color: var(--primary); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  .ctaInner { flex-direction: column; text-align: center; }
+  .ctaBtns  { flex-direction: column; width: 100%; }
+  .main     { grid-template-columns: 1fr; }
+  .bottomInner { flex-direction: column; text-align: center; }
+}
