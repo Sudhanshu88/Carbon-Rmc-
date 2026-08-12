@@ -10,28 +10,31 @@
   --primary-light: #FF8C3A;
 
   /* Blue — Secondary / accent */
-  --secondary:     #0A1628;
+  --secondary:     #0B1D3A;
   --blue:          #1E6FFF;
   --blue-dark:     #1558D6;
   --blue-light:    #5B9BFF;
 
-  /* Black backgrounds */
-  --bg-dark:       #050A0F;
-  --bg-card:       #0D1520;
-  --bg-card2:      #0A1628;
+  /* Navy Blue backgrounds — logo ka blue mix */
+  --bg-dark:       #060E1F;
+  --bg-card:       #0C1A30;
+  --bg-card2:      #0B1828;
 
+  /* Subtle gradients */
+  --bg-gradient:   linear-gradient(135deg, #060E1F 0%, #0A1628 50%, #080F1C 100%);
+  --bg-hero:       linear-gradient(135deg, #060E1F 0%, #091525 60%, #0D1B2A 100%);
   /* Text */
   --text-primary:  #FFFFFF;
   --text-muted:    #7A8BA0;
   --text-light:    #B0C4D8;
 
-  /* Borders */
-  --border:        rgba(30, 111, 255, 0.15);
+  /* Borders — blue tinted */
+  --border:        rgba(30, 111, 255, 0.2);
   --border-bright: rgba(255, 107, 0, 0.5);
 
-  /* Glass */
-  --glass-bg:      rgba(255, 255, 255, 0.03);
-  --glass-border:  rgba(255, 255, 255, 0.07);
+  /* Glass — blue tinted panels */
+  --glass-bg:      rgba(30, 111, 255, 0.04);
+  --glass-border:  rgba(30, 111, 255, 0.12);
 
   /* Shadows */
   --shadow-gold:   0 0 40px rgba(255, 107, 0, 0.18);
@@ -61,7 +64,12 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--bg-dark);
+  background: #060E1F;
+  background-image:
+    radial-gradient(ellipse at top left,    rgba(30, 111, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255, 107,   0, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #060E1F 0%, #0A1525 50%, #060E1F 100%);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
