@@ -1,0 +1,256 @@
+/* [project]/app/contact/page.module.css [app-client] (css) */
+.page-module__j6Q3dW__contactGrid {
+  grid-template-columns: 1.2fr 1fr;
+  align-items: flex-start;
+  gap: 3rem;
+  display: grid;
+}
+
+.page-module__j6Q3dW__formTitle {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  letter-spacing: .04em;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.page-module__j6Q3dW__form {
+  flex-direction: column;
+  gap: 1.25rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__formRow {
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  display: grid;
+}
+
+.page-module__j6Q3dW__formGroup {
+  flex-direction: column;
+  gap: .4rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__label {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.page-module__j6Q3dW__formNote {
+  color: var(--text-muted);
+  text-align: center;
+  font-size: .78rem;
+}
+
+.page-module__j6Q3dW__successBox {
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: #22c55e0f;
+  border: 1px solid #22c55e33;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__successIcon {
+  font-size: 3rem;
+}
+
+.page-module__j6Q3dW__successBox h3 {
+  font-family: var(--font-heading);
+  color: #4ade80;
+  font-size: 1.8rem;
+}
+
+.page-module__j6Q3dW__successBox p {
+  color: var(--text-muted);
+  font-size: .9rem;
+}
+
+.page-module__j6Q3dW__infoSection {
+  flex-direction: column;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__infoTitle {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  letter-spacing: .06em;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.page-module__j6Q3dW__quickContact {
+  padding: 1.75rem;
+}
+
+.page-module__j6Q3dW__contactItems {
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__contactItem {
+  align-items: flex-start;
+  gap: .9rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__contactIconBox {
+  background: #d4a0171a;
+  border-radius: 8px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  display: flex;
+}
+
+.page-module__j6Q3dW__contactLabel {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .15rem;
+  font-size: .72rem;
+}
+
+.page-module__j6Q3dW__contactValue {
+  color: var(--text-light);
+  font-size: .9rem;
+  font-weight: 500;
+  transition: color .2s;
+}
+
+a.page-module__j6Q3dW__contactValue:hover {
+  color: var(--primary);
+}
+
+.page-module__j6Q3dW__whatsappBtn {
+  color: #fff;
+  border-radius: var(--radius);
+  background: #25d366;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+  width: 100%;
+  padding: .85rem;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .3s;
+  display: flex;
+  box-shadow: 0 4px 16px #25d3664d;
+}
+
+.page-module__j6Q3dW__whatsappBtn:hover {
+  background: #22c55e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px #25d36680;
+}
+
+.page-module__j6Q3dW__officesList {
+  padding: 1.75rem;
+}
+
+.page-module__j6Q3dW__officeItem {
+  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+  gap: .2rem;
+  padding: .75rem 0;
+  display: flex;
+}
+
+.page-module__j6Q3dW__officeItem:last-child {
+  border-bottom: none;
+}
+
+.page-module__j6Q3dW__officeCity {
+  color: var(--text-primary);
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.page-module__j6Q3dW__officeAddr {
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+
+.page-module__j6Q3dW__officePhone {
+  color: var(--primary);
+  font-size: .82rem;
+  transition: color .2s;
+}
+
+.page-module__j6Q3dW__officePhone:hover {
+  color: var(--primary-light);
+}
+
+.page-module__j6Q3dW__socialCard {
+  padding: 1.75rem;
+}
+
+.page-module__j6Q3dW__socialGrid {
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  display: grid;
+}
+
+.page-module__j6Q3dW__socialBtn {
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: pointer;
+  background: #ffffff0a;
+  border: 1px solid #ffffff14;
+  align-items: center;
+  gap: .6rem;
+  padding: .65rem .85rem;
+  font-size: .8rem;
+  transition: all .25s;
+  display: flex;
+}
+
+.page-module__j6Q3dW__socialBtn:hover {
+  background: var(--social-bg, var(--primary));
+  color: #fff;
+  border-color: #0000;
+  transform: translateY(-2px);
+}
+
+.page-module__j6Q3dW__socialIcon {
+  text-align: center;
+  width: 24px;
+  font-size: .85rem;
+  font-weight: 800;
+}
+
+.page-module__j6Q3dW__mapSection {
+  padding: 0 0 6rem;
+}
+
+.page-module__j6Q3dW__mapSection iframe {
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .page-module__j6Q3dW__contactGrid, .page-module__j6Q3dW__formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-module__j6Q3dW__socialGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*# sourceMappingURL=app_contact_page_module_css_1igg3k2._.single.css.map*/

@@ -6,9 +6,11 @@
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
-  background: radial-gradient(ellipse at 20% 50%, rgba(30,111,255,0.10) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(255,107,0,0.08) 0%, transparent 50%),
-              var(--bg-dark);
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 50%,  rgba(30, 111, 255, 0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 85% 25%,  rgba(255, 107,   0, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 80% at 50% 100%, rgba(30,  111, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(160deg, #060E1F 0%, #091628 40%, #07111E 100%);
 }
 
 .heroGrid {

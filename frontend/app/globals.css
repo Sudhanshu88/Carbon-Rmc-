@@ -9,20 +9,20 @@
   --primary-dark:  #E55A00;
   --primary-light: #FF8C3A;
 
-  /* Blue — Secondary / accent */
+  /* Blue — accent */
   --secondary:     #0B1D3A;
   --blue:          #1E6FFF;
   --blue-dark:     #1558D6;
   --blue-light:    #5B9BFF;
 
-  /* Navy Blue backgrounds — logo ka blue mix */
-  --bg-dark:       #060E1F;
-  --bg-card:       #0C1A30;
-  --bg-card2:      #0B1828;
+  /* Logo-matched backgrounds */
+  --bg-dark:       #07111F;
+  --bg-card:       #0D1E35;
+  --bg-card2:      #0A1828;
 
-  /* Subtle gradients */
-  --bg-gradient:   linear-gradient(135deg, #060E1F 0%, #0A1628 50%, #080F1C 100%);
-  --bg-hero:       linear-gradient(135deg, #060E1F 0%, #091525 60%, #0D1B2A 100%);
+  /* Gradients */
+  --bg-gradient:   linear-gradient(135deg, #070F1D 0%, #0C1A2E 50%, #07111F 100%);
+  --bg-hero:       linear-gradient(135deg, #07111F 0%, #091A30 60%, #07111F 100%);
   /* Text */
   --text-primary:  #FFFFFF;
   --text-muted:    #7A8BA0;
@@ -64,11 +64,12 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: #060E1F;
+  background: #07111F;
   background-image:
-    radial-gradient(ellipse at top left,    rgba(30, 111, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(255, 107,   0, 0.05) 0%, transparent 50%),
-    linear-gradient(135deg, #060E1F 0%, #0A1525 50%, #060E1F 100%);
+    radial-gradient(ellipse 100% 50% at 0%   0%,   rgba(30, 111, 255, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 80%  60% at 100% 100%, rgba(255, 107,   0, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 60%  40% at 50%  50%,  rgba(30,  111, 255, 0.04) 0%, transparent 70%),
+    linear-gradient(160deg, #07111F 0%, #0C1A2E 50%, #07111F 100%);
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
@@ -385,8 +386,11 @@ select.input option {
 .page-hero {
   position: relative;
   padding: 9rem 0 5rem;
-  background: linear-gradient(135deg, var(--bg-dark) 0%, #060F1E 100%);
-  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 80% 100% at 0%   50%, rgba(30, 111, 255, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80%  at 100% 30%, rgba(255, 107,   0, 0.12) 0%, transparent 55%),
+    linear-gradient(150deg, #07111F 0%, #0C1A2E 60%, #07111F 100%);
+  border-bottom: 1px solid rgba(30, 111, 255, 0.2);
   overflow: hidden;
 }
 
@@ -397,7 +401,7 @@ select.input option {
   right: -10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(30,111,255,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 107, 0, 0.09) 0%, transparent 70%);
   pointer-events: none;
 }
 
