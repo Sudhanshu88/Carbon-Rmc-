@@ -321,3 +321,18 @@
   .actions { flex-direction: column; }
   .jumpTab { padding: 0.85rem 1rem; font-size: 0.82rem; }
 }
+
+@media (max-width: 480px) {
+  /* Stack dual maps vertically on phones */
+  .fullMapWrap > div:first-child,
+  .fullMapWrap > div:last-child {
+    grid-column: 1 / -1 !important;
+  }
+  .fullMapWrap {
+    grid-template-columns: 1fr !important;
+  }
+  .hoursBox { padding: 1rem; }
+  .specGrid { grid-template-columns: 1fr; }
+  .jumpBar .container { flex-direction: column; gap: 0.5rem; }
+  .jumpTab { width: 100%; justify-content: space-between; }
+}

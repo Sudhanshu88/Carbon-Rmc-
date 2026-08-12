@@ -1,0 +1,94 @@
+/* ─────────────────────────────────────────
+   MOBILE RESPONSIVENESS — Full Fix
+   Breakpoints: 768px (tablet), 480px (phone)
+───────────────────────────────────────── */
+
+/* ── Container padding on small screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+
+  /* ── Buttons — full width on mobile */
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Cards */
+  .card {
+    padding: 1.25rem;
+  }
+
+  /* ── Grid helpers */
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* ── Page hero */
+  .page-hero {
+    padding: 5rem 0 2.5rem;
+  }
+
+  /* ── Stat cards — 2 columns */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  /* ── Social links */
+  .social-links {
+    justify-content: center;
+  }
+}
+
+/* ── Extra small phones */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 8vw, 2rem);
+  }
+
+  .section-desc {
+    font-size: 0.9rem;
+  }
+
+  /* ── Stat cards — 2 columns on small */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* ── Buttons stack full width */
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Cards tighter padding */
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+}
