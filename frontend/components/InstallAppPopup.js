@@ -37,6 +37,7 @@ export default function InstallAppPopup({
     isInstalled,
     isIOS,
     isSupported,
+    deferredPrompt,
     triggerInstall,
     dismiss,
   } = usePWAInstall({ popupDelay, redisplayDays });
