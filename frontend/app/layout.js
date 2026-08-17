@@ -1,33 +1,72 @@
 import './globals.css';
+import InstallAppPopup from '../components/InstallAppPopup';
 
 export const metadata = {
   title: 'Carbon RMC | Premium Construction Company',
   description: 'Carbon RMC — India\'s trusted construction and Ready Mix Concrete company. Quality construction, on-time delivery, and unmatched craftsmanship.',
-  keywords: 'construction company, RMC, ready mix concrete, residential construction, commercial construction',
+  keywords: 'construction company, RMC, ready mix concrete, residential construction, commercial construction, Patna',
+  metadataBase: new URL('https://carbon-rmc.vercel.app'),
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Carbon RMC',
+  },
   openGraph: {
     title: 'Carbon RMC | Premium Construction Company',
     description: 'Building Tomorrow, Today. Premium construction services across India.',
     type: 'website',
+    images: ['/logo.jpg'],
   },
 };
+
+// ── Viewport export (Next.js 16+) — themeColor goes here
+export const viewport = {
+  themeColor: '#FF6B00',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* ── Fonts ── */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+
+        {/* ── PWA Meta Tags ── */}
+        <meta name="application-name"    content="Carbon RMC" />
+        <meta name="apple-mobile-web-app-capable"          content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title"            content="Carbon RMC" />
+        <meta name="mobile-web-app-capable"                content="yes" />
+        <meta name="msapplication-TileColor"               content="#FF6B00" />
+        <meta name="theme-color"                           content="#FF6B00" />
+
+        {/* ── PWA Manifest & Icons ── */}
+        <link rel="manifest"        href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/logo.jpg" />
+        <link rel="icon"            href="/favicon.ico" />
       </head>
       <body>
         {children}
 
-        {/* Floating WhatsApp */}
+        {/* ── PWA Install Popup ── */}
+        <InstallAppPopup
+          popupDelay={3500}
+          redisplayDays={3}
+        />
+
+        {/* ── Floating WhatsApp ── */}
         <a
-          href="https://wa.me/91XXXXXXXXXX"
+          href="https://wa.me/919031835122"
           target="_blank"
           rel="noopener noreferrer"
           className="whatsapp-float"

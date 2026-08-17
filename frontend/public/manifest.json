@@ -1,0 +1,43 @@
+{
+  "name": "Carbon RMC",
+  "short_name": "Carbon RMC",
+  "description": "India's trusted construction & Ready Mix Concrete company. Premium quality, on-time delivery.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07111F",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "construction"],
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Get Quote",
+      "short_name": "Quote",
+      "description": "Request a free construction quote",
+      "url": "/contact",
+      "icons": [{ "src": "/logo.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Our Projects",
+      "short_name": "Projects",
+      "description": "View our construction projects",
+      "url": "/projects",
+      "icons": [{ "src": "/logo.jpg", "sizes": "96x96" }]
+    }
+  ]
+}
