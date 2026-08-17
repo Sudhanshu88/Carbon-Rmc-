@@ -164,11 +164,32 @@ export default function InstallAppPopup({
           </div>
         )}
 
+        {/* ── Chrome install guide (when native prompt not yet fired) ── */}
+        {!isIOS && !deferredPrompt && (
+          <div className={styles.chromeGuide}>
+            <div className={styles.chromeGuideTitle}>
+              <span>📌</span> Install via Chrome Address Bar:
+            </div>
+            <div className={styles.chromeStep}>
+              <span className={styles.chromeNum}>1</span>
+              <span>Look for the <strong>install icon ⊕</strong> in your browser address bar (top right)</span>
+            </div>
+            <div className={styles.chromeStep}>
+              <span className={styles.chromeNum}>2</span>
+              <span>Click it and select <strong>"Install"</strong></span>
+            </div>
+            <div className={styles.chromeStep}>
+              <span className={styles.chromeNum}>3</span>
+              <span>Or use Chrome menu <strong>⋮ → "Install Carbon RMC"</strong></span>
+            </div>
+          </div>
+        )}
+
         {/* ── Action buttons ── */}
         <div className={styles.actions}>
           {!isIOS ? (
             deferredPrompt ? (
-              // Native install available (Chrome/Edge/Android)
+              // ✅ Native install available (Chrome/Edge/Android)
               <button
                 className={styles.installBtn}
                 onClick={triggerInstall}
@@ -180,20 +201,17 @@ export default function InstallAppPopup({
                 Install App — It's Free!
               </button>
             ) : (
-              // Browser doesn't support beforeinstallprompt — show guide
-              <a
-                href="https://support.google.com/chrome/answer/9658361"
-                target="_blank"
-                rel="noopener noreferrer"
+              // ⏳ Waiting — dismiss and revisit to trigger install
+              <button
                 className={styles.installBtn}
+                onClick={dismiss}
                 id="pwa-install-btn"
-                style={{ textDecoration: 'none' }}
               >
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
-                Add to Home Screen
-              </a>
+                Got it — I'll Install from Address Bar
+              </button>
             )
           ) : null}
 
