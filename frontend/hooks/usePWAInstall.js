@@ -5,12 +5,12 @@ import { useState, useEffect, useCallback, useRef } from 'react';
  * usePWAInstall — Custom hook for PWA installation
  *
  * Config options:
- * @param {number}  popupDelay      ms before popup shows (default: 3000)
+ * @param {number}  popupDelay      ms before popup shows (default: 3500)
  * @param {number}  redisplayDays   days before re-showing dismissed popup (default: 3)
  * @param {string}  storageKey      localStorage key (default: 'crmc-pwa')
  */
 export default function usePWAInstall({
-  popupDelay    = 3000,
+  popupDelay    = 3500,
   redisplayDays = 3,
   storageKey    = 'crmc-pwa',
 } = {}) {
@@ -19,10 +19,10 @@ export default function usePWAInstall({
   const [isInstalled,    setIsInstalled]    = useState(false);
   const [isIOS,          setIsIOS]          = useState(false);
   const [isSupported,    setIsSupported]    = useState(false);
-  const [installResult,  setInstallResult]  = useState(null); // 'accepted'|'dismissed'|null
   const timerRef = useRef(null);
+  const promptCaptured = useRef(false);
 
-  // ── Detect if already running as installed PWA
+  // ── Check if already running as installed PWA
   const checkInstalled = useCallback(() => {
     if (typeof window === 'undefined') return false;
     return (
@@ -34,6 +34,7 @@ export default function usePWAInstall({
   // ── Should we show popup?
   const shouldShow = useCallback(() => {
     if (typeof window === 'undefined') return false;
+    if (checkInstalled()) return false;
     try {
       const stored = JSON.parse(localStorage.getItem(storageKey) || '{}');
       if (stored.installed) return false;
@@ -43,7 +44,7 @@ export default function usePWAInstall({
       }
     } catch { /* ignore */ }
     return true;
-  }, [storageKey, redisplayDays]);
+  }, [storageKey, redisplayDays, checkInstalled]);
 
   // ── Persist state
   const persist = useCallback((data) => {
@@ -60,30 +61,28 @@ export default function usePWAInstall({
     }
   }, []);
 
-  // ── Setup install event listeners
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Already installed — skip
+    // Already installed as PWA — never show
     if (checkInstalled()) {
       setIsInstalled(true);
       return;
     }
 
-    // iOS detection
-    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) &&
-                !window.MSStream;
+    // Don't show if user already dismissed recently
+    if (!shouldShow()) return;
+
+    // ── iOS detection
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
     setIsIOS(ios);
 
+    // ── Capture beforeinstallprompt (Chrome/Edge/Android)
     const handleBeforeInstall = (e) => {
       e.preventDefault();
+      promptCaptured.current = true;
       setDeferredPrompt(e);
       setIsSupported(true);
-
-      // Show popup after delay if eligible
-      if (shouldShow()) {
-        timerRef.current = setTimeout(() => setIsVisible(true), popupDelay);
-      }
     };
 
     const handleAppInstalled = () => {
@@ -91,18 +90,17 @@ export default function usePWAInstall({
       setIsVisible(false);
       setDeferredPrompt(null);
       persist({ installed: true });
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstall);
     window.addEventListener('appinstalled', handleAppInstalled);
 
-    // iOS — show popup even without beforeinstallprompt
-    if (ios && shouldShow()) {
-      timerRef.current = setTimeout(() => {
-        setIsVisible(true);
-        setIsSupported(false);
-      }, popupDelay);
-    }
+    // ── Show popup after delay regardless of beforeinstallprompt
+    // (beforeinstallprompt may not fire in dev or on iOS)
+    timerRef.current = setTimeout(() => {
+      setIsVisible(true);
+    }, popupDelay);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
@@ -111,13 +109,12 @@ export default function usePWAInstall({
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ── Trigger native install
+  // ── Trigger native install prompt
   const triggerInstall = useCallback(async () => {
     if (!deferredPrompt) return;
     try {
       await deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
-      setInstallResult(outcome);
       if (outcome === 'accepted') {
         setIsInstalled(true);
         setIsVisible(false);
@@ -138,7 +135,7 @@ export default function usePWAInstall({
     persist({ dismissed: Date.now() });
   }, [persist]);
 
-  // ── Force-show (for testing)
+  // ── Force show (for testing)
   const show = useCallback(() => setIsVisible(true), []);
 
   return {
@@ -146,7 +143,7 @@ export default function usePWAInstall({
     isInstalled,
     isIOS,
     isSupported,
-    installResult,
+    deferredPrompt,
     triggerInstall,
     dismiss,
     show,

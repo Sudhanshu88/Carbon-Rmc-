@@ -165,21 +165,35 @@ export default function InstallAppPopup({
 
         {/* ── Action buttons ── */}
         <div className={styles.actions}>
-          {!isIOS && isSupported ? (
-            <button
-              className={styles.installBtn}
-              onClick={triggerInstall}
-              id="pwa-install-btn"
-            >
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-              </svg>
-              Install App — It's Free!
-            </button>
-          ) : !isIOS ? (
-            <button className={`${styles.installBtn} ${styles.installBtnDisabled}`} disabled>
-              Open in Browser to Install
-            </button>
+          {!isIOS ? (
+            deferredPrompt ? (
+              // Native install available (Chrome/Edge/Android)
+              <button
+                className={styles.installBtn}
+                onClick={triggerInstall}
+                id="pwa-install-btn"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+                Install App — It's Free!
+              </button>
+            ) : (
+              // Browser doesn't support beforeinstallprompt — show guide
+              <a
+                href="https://support.google.com/chrome/answer/9658361"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.installBtn}
+                id="pwa-install-btn"
+                style={{ textDecoration: 'none' }}
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+                Add to Home Screen
+              </a>
+            )
           ) : null}
 
           <button
