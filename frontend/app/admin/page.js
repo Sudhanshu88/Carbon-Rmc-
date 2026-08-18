@@ -1,77 +1,207 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './admin.module.css';
 
-function StatCard({ icon, label, value, sub, color }) {
+/* ─── Sidebar nav items ─── */
+const NAV = [
+  { id: 'home',      icon: '🏠', label: 'Home'       },
+  { id: 'inquiries', icon: '📩', label: 'Inquiries'  },
+  { id: 'projects',  icon: '🏗️', label: 'Projects'   },
+  { id: 'locations', icon: '📍', label: 'Locations'  },
+  { id: 'employees', icon: '👥', label: 'Our Team'   },
+  { id: 'services',  icon: '⚙️', label: 'Services'   },
+];
+
+/* ─── Stat card ─── */
+function StatCard({ icon, label, value, color }) {
   return (
     <div className={styles.statCard} style={{ '--accent': color }}>
       <div className={styles.statIcon}>{icon}</div>
       <div>
-        <div className={styles.statVal}>{value ?? '...'}</div>
+        <div className={styles.statVal}>{value ?? '—'}</div>
         <div className={styles.statLabel}>{label}</div>
-        {sub && <div className={styles.statSub}>{sub}</div>}
       </div>
     </div>
   );
 }
 
+/* ─── Home section ─── */
+function HomeSection() {
+  return (
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>🏠 Website Overview</h2>
+      <div className={styles.quickLinks}>
+        {[
+          { href: '/',          label: '🏠 Home Page',     color: '#3B82F6' },
+          { href: '/about',     label: '👥 About Us',      color: '#8B5CF6' },
+          { href: '/services',  label: '⚙️ Services',      color: '#FF6B00' },
+          { href: '/projects',  label: '🏗️ Projects',      color: '#10B981' },
+          { href: '/employees', label: '👤 Our Team',      color: '#F59E0B' },
+          { href: '/offices',   label: '📍 Locations',     color: '#EF4444' },
+          { href: '/contact',   label: '📞 Contact',       color: '#06B6D4' },
+        ].map(({ href, label, color }) => (
+          <Link
+            key={href}
+            href={href}
+            target="_blank"
+            className={styles.quickLink}
+            style={{ '--lc': color }}
+          >
+            {label}
+            <span className={styles.qlArrow}>↗</span>
+          </Link>
+        ))}
+      </div>
+
+      <div className={styles.infoGrid}>
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon}>🌐</div>
+          <div>
+            <div className={styles.infoTitle}>Live Website</div>
+            <a href="https://carbon-rmc.vercel.app" target="_blank" className={styles.infoLink} rel="noreferrer">
+              carbon-rmc.vercel.app ↗
+            </a>
+          </div>
+        </div>
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon}>📱</div>
+          <div>
+            <div className={styles.infoTitle}>WhatsApp</div>
+            <div className={styles.infoVal}>+91 90318 35122</div>
+          </div>
+        </div>
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon}>📧</div>
+          <div>
+            <div className={styles.infoTitle}>Email</div>
+            <div className={styles.infoVal}>info@carbonrmc.com</div>
+          </div>
+        </div>
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon}>📅</div>
+          <div>
+            <div className={styles.infoTitle}>Established</div>
+            <div className={styles.infoVal}>2026 · ISO Certified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Locations section ─── */
+function LocationsSection() {
+  const locations = [
+    { name: 'Head Office — Patna',         type: 'Office', city: 'Patna',    state: 'Bihar',   phone: '+91 90318 35122', manager: 'Sudhanshu Ranjan', icon: '🏢', isHQ: true  },
+    { name: 'RMC Plant — Patna East',      type: 'Plant',  city: 'Patna',    state: 'Bihar',   phone: '+91 90318 35122', manager: 'Site Manager',     icon: '🏭', isHQ: false },
+    { name: 'Branch Office — Muzaffarpur', type: 'Office', city: 'Muzaffarpur', state: 'Bihar', phone: '+91 90318 35122', manager: 'Branch Head',      icon: '🏢', isHQ: false },
+  ];
+
+  return (
+    <div className={styles.section}>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>📍 Offices & Plants</h2>
+        <span className={styles.countBadge}>{locations.length} locations</span>
+      </div>
+      <div className={styles.locGrid}>
+        {locations.map((loc, i) => (
+          <div key={i} className={styles.locCard}>
+            <div className={styles.locTop}>
+              <span className={styles.locIcon}>{loc.icon}</span>
+              <div className={styles.locInfo}>
+                <div className={styles.locName}>
+                  {loc.name}
+                  {loc.isHQ && <span className={styles.hqBadge}>HQ</span>}
+                </div>
+                <div className={styles.locType} style={{ color: loc.type === 'Plant' ? '#FF6B00' : '#3B82F6' }}>
+                  {loc.type}
+                </div>
+              </div>
+            </div>
+            <div className={styles.locDetails}>
+              <div>📌 {loc.city}, {loc.state}</div>
+              <div>📞 {loc.phone}</div>
+              <div>👤 {loc.manager}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Services section ─── */
+function ServicesSection() {
+  const services = [
+    { icon: '🏠', name: 'Residential Construction',   desc: 'Homes, villas, apartments' },
+    { icon: '🏢', name: 'Commercial Construction',    desc: 'Offices, malls, complexes' },
+    { icon: '🏭', name: 'Industrial Construction',    desc: 'Factories, warehouses' },
+    { icon: '🪨', name: 'Ready Mix Concrete (RMC)',   desc: 'M20 to M50 grades' },
+    { icon: '🔨', name: 'Renovation & Retrofitting',  desc: 'Upgrade existing structures' },
+    { icon: '🏗️', name: 'Infrastructure Projects',    desc: 'Roads, bridges, public works' },
+  ];
+
+  return (
+    <div className={styles.section}>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>⚙️ Our Services</h2>
+        <span className={styles.countBadge}>{services.length} services</span>
+      </div>
+      <div className={styles.servGrid}>
+        {services.map((s, i) => (
+          <div key={i} className={styles.servCard}>
+            <div className={styles.servIcon}>{s.icon}</div>
+            <div className={styles.servName}>{s.name}</div>
+            <div className={styles.servDesc}>{s.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Placeholder for future sections ─── */
+function PlaceholderSection({ tab }) {
+  const info = {
+    projects:  { icon: '🏗️', title: 'Projects',   note: 'Project data will appear here when backend is connected.' },
+    employees: { icon: '👥', title: 'Our Team',   note: 'Employee records will appear here when backend is connected.' },
+    inquiries: { icon: '📩', title: 'Inquiries',  note: 'Customer inquiries from the contact form will appear here.' },
+  };
+  const d = info[tab] || { icon: '📂', title: tab, note: '' };
+
+  return (
+    <div className={styles.section}>
+      <h2 className={styles.sectionTitle}>{d.icon} {d.title}</h2>
+      <div className={styles.placeholderBox}>
+        <div className={styles.phIcon}>{d.icon}</div>
+        <div className={styles.phTitle}>No data yet</div>
+        <div className={styles.phNote}>{d.note}</div>
+        <Link href="/contact" target="_blank" className={styles.phBtn}>
+          Go to Contact Form ↗
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   MAIN ADMIN DASHBOARD
+══════════════════════════════════════════ */
 export default function AdminDashboard() {
   const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [stats, setStats] = useState(null);
-  const [inquiries, setInquiries] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  const token = typeof window !== 'undefined' ? localStorage.getItem('admin_token') : null;
+  const [user,      setUser]      = useState(null);
+  const [activeTab, setActiveTab] = useState('home');
+  const [menuOpen,  setMenuOpen]  = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('admin_user');
     const tok    = localStorage.getItem('admin_token');
-    // Accept both old backend tokens and new local token
     if (!stored || !tok) { router.push('/admin/login'); return; }
     setUser(JSON.parse(stored));
-    setLoading(false);
-    // Try to load from backend if available (optional)
-    loadInquiries().catch(() => {});
-  }, []);
-
-  const authHeaders = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
-
-  async function loadStats() {
-    try {
-      const res = await fetch('/api/stats', { headers: authHeaders });
-      const data = await res.json();
-      if (data.success) { setStats(data.stats); setInquiries(data.recentInquiries); }
-    } catch { } finally { setLoading(false); }
-  }
-
-  async function loadInquiries() {
-    try {
-      const res = await fetch('/api/contact?limit=50', { headers: authHeaders });
-      const data = await res.json();
-      if (data.success) setInquiries(data.contacts);
-    } catch { }
-  }
-
-  async function updateStatus(id, status) {
-    await fetch(`/api/contact/${id}`, {
-      method: 'PATCH',
-      headers: authHeaders,
-      body: JSON.stringify({ status }),
-    });
-    loadInquiries();
-    loadStats();
-  }
-
-  async function deleteInquiry(id) {
-    if (!confirm('Delete this inquiry?')) return;
-    await fetch(`/api/contact/${id}`, { method: 'DELETE', headers: authHeaders });
-    loadInquiries();
-    loadStats();
-  }
+  }, [router]);
 
   function logout() {
     localStorage.removeItem('admin_token');
@@ -79,236 +209,112 @@ export default function AdminDashboard() {
     router.push('/admin/login');
   }
 
-  const statusColor = { new: '#3B82F6', contacted: '#F59E0B', converted: '#10B981', closed: '#6B7280' };
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home':      return <HomeSection />;
+      case 'locations': return <LocationsSection />;
+      case 'services':  return <ServicesSection />;
+      default:          return <PlaceholderSection tab={activeTab} />;
+    }
+  };
+
+  if (!user) return (
+    <div style={{ minHeight: '100vh', background: '#07111F', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+      Loading...
+    </div>
+  );
 
   return (
     <div className={styles.layout}>
-      {/* Sidebar */}
-      <aside className={styles.sidebar}>
+
+      {/* ── Sidebar ── */}
+      <aside className={`${styles.sidebar} ${menuOpen ? styles.sidebarOpen : ''}`}>
+        {/* Logo */}
         <div className={styles.sidebarLogo}>
-          <span className={styles.sideLogo}>⬡</span>
+          <Image src="/logo.jpg" alt="logo" width={36} height={36} style={{ borderRadius: '50%', flexShrink: 0 }} />
           <div>
-            <div className={styles.sideLogoText}><span style={{color:'#5B9BFF'}}>CARB</span><span style={{color:'#FF6B00'}}>ON</span></div>
+            <div className={styles.sideLogoText}>
+              <span style={{ color: '#5B9BFF' }}>CARB</span>
+              <span style={{ color: '#FF6B00' }}>ON</span>
+            </div>
             <div className={styles.sideLogoSub}>Admin Panel</div>
           </div>
         </div>
 
+        {/* Nav */}
         <nav className={styles.nav}>
-          {[
-            { id: 'dashboard', icon: '📊', label: 'Dashboard' },
-            { id: 'inquiries', icon: '📩', label: 'Inquiries' },
-            { id: 'projects',  icon: '🏗️', label: 'Projects' },
-            { id: 'employees', icon: '👥', label: 'Employees' },
-            { id: 'offices',   icon: '📍', label: 'Locations' },
-          ].map(item => (
+          {NAV.map(item => (
             <button
               key={item.id}
               className={`${styles.navItem} ${activeTab === item.id ? styles.navActive : ''}`}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => { setActiveTab(item.id); setMenuOpen(false); }}
             >
-              <span>{item.icon}</span>
+              <span className={styles.navIcon}>{item.icon}</span>
               <span>{item.label}</span>
-              {item.id === 'inquiries' && stats?.newContacts > 0 && (
-                <span className={styles.badge}>{stats.newContacts}</span>
-              )}
             </button>
           ))}
         </nav>
 
+        {/* Bottom */}
         <div className={styles.sidebarBottom}>
-          <Link href="/" className={styles.viewSite} target="_blank">🌐 View Site</Link>
-          <button className={styles.logoutBtn} onClick={logout}>🚪 Logout</button>
-          {user && <div className={styles.userInfo}>👤 {user.name}</div>}
+          <Link href="/" target="_blank" className={styles.viewSite}>
+            🌐 View Site
+          </Link>
+          <button className={styles.logoutBtn} onClick={logout}>
+            🚪 Logout
+          </button>
+          {user && (
+            <div className={styles.userInfo}>
+              <span className={styles.userDot}>●</span>
+              {user.name}
+            </div>
+          )}
         </div>
       </aside>
 
-      {/* Main */}
+      {/* ── Main ── */}
       <main className={styles.main}>
-        {/* Header */}
-        <div className={styles.header}>
+        {/* Topbar */}
+        <div className={styles.topbar}>
+          <button
+            className={styles.menuToggle}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            ☰
+          </button>
           <h1 className={styles.pageTitle}>
-            {activeTab === 'dashboard' && '📊 Dashboard'}
-            {activeTab === 'inquiries' && '📩 Customer Inquiries'}
-            {activeTab === 'projects'  && '🏗️ Projects'}
-            {activeTab === 'employees' && '👥 Employees'}
-            {activeTab === 'offices'   && '📍 Locations'}
+            {NAV.find(n => n.id === activeTab)?.icon}{' '}
+            {NAV.find(n => n.id === activeTab)?.label}
           </h1>
-          <div className={styles.headerRight}>
+          <div className={styles.topRight}>
             <span className={styles.liveTag}>🟢 Live</span>
           </div>
         </div>
 
-        {/* ── DASHBOARD TAB ── */}
-        {activeTab === 'dashboard' && (
-          <div>
-            <div className={styles.statsGrid}>
-              <StatCard icon="📩" label="Total Inquiries"  value={stats?.totalContacts}  sub={`${stats?.newContacts ?? 0} new`} color="#3B82F6" />
-              <StatCard icon="🏗️" label="Total Projects"   value={stats?.totalProjects}  sub={`${stats?.ongoingProjects ?? 0} ongoing`} color="#FF6B00" />
-              <StatCard icon="👥" label="Team Members"     value={stats?.totalEmployees} color="#10B981" />
-              <StatCard icon="📍" label="Locations"        value={stats?.totalOffices}   color="#8B5CF6" />
-            </div>
-
-            <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>🕐 Recent Inquiries</h2>
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Name</th><th>Phone</th><th>Type</th><th>Status</th><th>Date</th><th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {inquiries.slice(0,8).map(c => (
-                      <tr key={c._id}>
-                        <td>{c.name}</td>
-                        <td><a href={`tel:${c.phone}`} style={{color:'#FF6B00'}}>{c.phone}</a></td>
-                        <td>{c.projectType}</td>
-                        <td>
-                          <span className={styles.statusBadge} style={{background: statusColor[c.status]+'22', color: statusColor[c.status], border:`1px solid ${statusColor[c.status]}44`}}>
-                            {c.status}
-                          </span>
-                        </td>
-                        <td>{new Date(c.createdAt).toLocaleDateString('en-IN')}</td>
-                        <td>
-                          <select className={styles.statusSelect} value={c.status} onChange={e => updateStatus(c._id, e.target.value)}>
-                            <option value="new">New</option>
-                            <option value="contacted">Contacted</option>
-                            <option value="converted">Converted</option>
-                            <option value="closed">Closed</option>
-                          </select>
-                        </td>
-                      </tr>
-                    ))}
-                    {inquiries.length === 0 && (
-                      <tr><td colSpan={6} style={{textAlign:'center',color:'rgba(255,255,255,0.3)',padding:'3rem'}}>No inquiries yet</td></tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        {/* Stats row on home */}
+        {activeTab === 'home' && (
+          <div className={styles.statsGrid}>
+            <StatCard icon="🏗️" label="Projects Done"    value="200+"  color="#FF6B00" />
+            <StatCard icon="😊" label="Happy Clients"    value="500+"  color="#10B981" />
+            <StatCard icon="📍" label="Cities Covered"   value="15+"   color="#3B82F6" />
+            <StatCard icon="⭐" label="Years Experience" value="10+"   color="#8B5CF6" />
           </div>
         )}
 
-        {/* ── INQUIRIES TAB ── */}
-        {activeTab === 'inquiries' && (
-          <div>
-            <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                <thead>
-                  <tr><th>Name</th><th>Phone</th><th>Email</th><th>Project Type</th><th>Message</th><th>Status</th><th>Date</th><th>Actions</th></tr>
-                </thead>
-                <tbody>
-                  {inquiries.map(c => (
-                    <tr key={c._id}>
-                      <td style={{fontWeight:600}}>{c.name}</td>
-                      <td><a href={`tel:${c.phone}`} style={{color:'#FF6B00'}}>{c.phone}</a></td>
-                      <td style={{fontSize:'0.8rem'}}>{c.email || '—'}</td>
-                      <td>{c.projectType}</td>
-                      <td style={{maxWidth:200, fontSize:'0.8rem', color:'rgba(255,255,255,0.6)'}} title={c.message}>{c.message.slice(0,60)}...</td>
-                      <td>
-                        <select className={styles.statusSelect} value={c.status} onChange={e => updateStatus(c._id, e.target.value)}>
-                          <option value="new">🔵 New</option>
-                          <option value="contacted">🟡 Contacted</option>
-                          <option value="converted">🟢 Converted</option>
-                          <option value="closed">⚫ Closed</option>
-                        </select>
-                      </td>
-                      <td style={{fontSize:'0.78rem'}}>{new Date(c.createdAt).toLocaleDateString('en-IN')}</td>
-                      <td>
-                        <button className={styles.deleteBtn} onClick={() => deleteInquiry(c._id)}>🗑️</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
-        {/* ── OTHER TABS — Coming with full CRUD ── */}
-        {(activeTab === 'projects' || activeTab === 'employees' || activeTab === 'offices') && (
-          <AdminCRUD tab={activeTab} token={token} authHeaders={authHeaders} />
-        )}
+        {/* Content */}
+        <div className={styles.content}>
+          {renderContent()}
+        </div>
       </main>
-    </div>
-  );
-}
 
-// Simple CRUD placeholder for Projects, Employees, Offices tabs
-function AdminCRUD({ tab, authHeaders }) {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const endpointMap = { projects: '/api/projects', employees: '/api/employees', offices: '/api/offices' };
-  const endpoint = endpointMap[tab];
-
-  useEffect(() => {
-    fetch(endpoint, { headers: authHeaders })
-      .then(r => r.json())
-      .then(d => {
-        const key = tab === 'projects' ? 'projects' : tab === 'employees' ? 'employees' : 'offices';
-        setItems(d[key] || []);
-        setLoading(false);
-      });
-  }, [tab]);
-
-  async function deleteItem(id) {
-    if (!confirm('Delete this item?')) return;
-    await fetch(`${endpoint}/${id}`, { method: 'DELETE', headers: authHeaders });
-    setItems(items.filter(i => i._id !== id));
-  }
-
-  const renderRow = (item) => {
-    if (tab === 'projects') return (
-      <tr key={item._id}>
-        <td>{item.emoji} {item.title}</td>
-        <td>{item.category}</td>
-        <td>{item.location}, {item.city}</td>
-        <td><span style={{color: item.status==='Ongoing'?'#3B82F6':'#10B981'}}>{item.status}</span></td>
-        <td>{item.year}</td>
-        <td><button className={styles.deleteBtn} onClick={() => deleteItem(item._id)}>🗑️</button></td>
-      </tr>
-    );
-    if (tab === 'employees') return (
-      <tr key={item._id}>
-        <td style={{fontWeight:600}}>{item.empId}</td>
-        <td>{item.emoji} {item.name}</td>
-        <td>{item.role}</td>
-        <td>{item.department}</td>
-        <td>{item.phone || '—'}</td>
-        <td><button className={styles.deleteBtn} onClick={() => deleteItem(item._id)}>🗑️</button></td>
-      </tr>
-    );
-    if (tab === 'offices') return (
-      <tr key={item._id}>
-        <td>{item.emoji} {item.name}</td>
-        <td><span style={{color: item.type==='plant'?'#FF6B00':'#3B82F6'}}>{item.type.toUpperCase()}</span></td>
-        <td>{item.city}, {item.state}</td>
-        <td>{item.manager || item.incharge || '—'}</td>
-        <td><button className={styles.deleteBtn} onClick={() => deleteItem(item._id)}>🗑️</button></td>
-      </tr>
-    );
-  };
-
-  const headers = {
-    projects:  ['Title','Category','Location','Status','Year','Del'],
-    employees: ['ID','Name','Role','Department','Phone','Del'],
-    offices:   ['Name','Type','City','Manager','Del'],
-  };
-
-  return (
-    <div>
-      <div className={styles.tableWrap}>
-        <table className={styles.table}>
-          <thead><tr>{headers[tab].map(h => <th key={h}>{h}</th>)}</tr></thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={6} style={{textAlign:'center',padding:'3rem',color:'rgba(255,255,255,0.3)'}}>Loading...</td></tr>
-            ) : items.length === 0 ? (
-              <tr><td colSpan={6} style={{textAlign:'center',padding:'3rem',color:'rgba(255,255,255,0.3)'}}>No {tab} found — add via API or contact form</td></tr>
-            ) : items.map(renderRow)}
-          </tbody>
-        </table>
-      </div>
+      {/* Mobile overlay */}
+      {menuOpen && (
+        <div
+          className={styles.overlay}
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
     </div>
   );
 }

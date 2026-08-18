@@ -139,17 +139,6 @@ export default function AdminLogin() {
           </button>
         </form>
 
-        {/* Hint */}
-        <div className={styles.hintBox}>
-          <p className={styles.hintTitle}>🔐 Default Credentials</p>
-          <p className={styles.hintLine}>
-            <strong>Email:</strong> admin@carbonrmc.com
-          </p>
-          <p className={styles.hintLine}>
-            <strong>Password:</strong> CarbonRMC@2026
-          </p>
-        </div>
-
         <p className={styles.copyright}>
           © 2026 Carbon RMC — Admin Access Only
         </p>
