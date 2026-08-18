@@ -29,10 +29,13 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const stored = localStorage.getItem('admin_user');
-    if (!stored || !token) { router.push('/admin/login'); return; }
+    const tok    = localStorage.getItem('admin_token');
+    // Accept both old backend tokens and new local token
+    if (!stored || !tok) { router.push('/admin/login'); return; }
     setUser(JSON.parse(stored));
-    loadStats();
-    loadInquiries();
+    setLoading(false);
+    // Try to load from backend if available (optional)
+    loadInquiries().catch(() => {});
   }, []);
 
   const authHeaders = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };

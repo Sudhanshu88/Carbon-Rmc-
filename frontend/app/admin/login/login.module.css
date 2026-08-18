@@ -1,126 +1,254 @@
+/* ── Admin Login Page ── */
+
 .page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 30% 40%, rgba(30,111,255,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse at 70% 60%, rgba(255,107,0,0.08) 0%, transparent 50%),
-              #05080f;
-  padding: 2rem;
+  padding: 1.5rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%,   rgba(30, 111, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(255, 107, 0, 0.10) 0%, transparent 60%),
+    #07111F;
+  font-family: 'Inter', sans-serif;
 }
 
 .card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 3rem 2.5rem;
   width: 100%;
   max-width: 420px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  background: linear-gradient(160deg, #0D1E35 0%, #0A1828 100%);
+  border: 1px solid rgba(30, 111, 255, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
+/* ── Logo section ── */
 .logoWrap {
   text-align: center;
-  margin-bottom: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.logoRing {
+  display: inline-block;
+  padding: 4px;
+  background: linear-gradient(135deg, #1E6FFF, #FF6B00);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 30px rgba(30, 111, 255, 0.3);
 }
 
 .title {
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
   color: #fff;
-  letter-spacing: 0.05em;
-  margin: 0;
+  margin: 0 0 0.25rem;
+  line-height: 1;
+}
+
+.rmcBadge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.65rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.12);
+  vertical-align: middle;
 }
 
 .sub {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.4);
+  font-size: 0.82rem;
+  color: #7A8BA0;
   margin: 0;
 }
 
+/* ── Error ── */
 .error {
-  background: rgba(248,113,113,0.12);
-  border: 1px solid rgba(248,113,113,0.3);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   color: #FCA5A5;
-  padding: 0.75rem 1rem;
   border-radius: 10px;
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.84rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+/* ── Form ── */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
 }
 
-.field { display: flex; flex-direction: column; gap: 0.5rem; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
 
 .label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: #B0C4D8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.02em;
 }
 
 .input {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
-  color: #fff;
-  font-size: 0.95rem;
-  outline: none;
-  transition: all 0.2s;
   width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(30, 111, 255, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
+
+.input::placeholder { color: rgba(122, 139, 160, 0.5); }
 
 .input:focus {
-  border-color: rgba(255,107,0,0.5);
-  background: rgba(255,107,0,0.05);
-  box-shadow: 0 0 0 3px rgba(255,107,0,0.1);
+  border-color: rgba(30, 111, 255, 0.6);
+  background: rgba(30, 111, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(30, 111, 255, 0.1);
 }
 
-.input::placeholder { color: rgba(255,255,255,0.25); }
+/* ── Password field ── */
+.passWrap {
+  position: relative;
+}
 
-.btn {
-  background: linear-gradient(135deg, #FF6B00, #FF8C00);
-  color: #000;
-  font-weight: 700;
+.passWrap .input {
+  padding-right: 3rem;
+}
+
+.showPass {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
   font-size: 1rem;
-  padding: 0.9rem;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.showPass:hover { opacity: 1; }
+
+/* ── Submit button ── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #FF6B00, #E55A00);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(255, 107, 0, 0.35);
+  transition: all 0.25s ease;
   margin-top: 0.5rem;
-  letter-spacing: 0.04em;
 }
 
 .btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255,107,0,0.4);
+  box-shadow: 0 8px 28px rgba(255, 107, 0, 0.5);
 }
 
-.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
 
-.hint {
+/* ── Spinner ── */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Hint box ── */
+.hintBox {
+  background: rgba(30, 111, 255, 0.05);
+  border: 1px solid rgba(30, 111, 255, 0.15);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.hintTitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #5B9BFF;
+  margin: 0 0 0.5rem;
+}
+
+.hintLine {
+  font-size: 0.78rem;
+  color: #7A8BA0;
+  margin: 0.2rem 0;
+}
+
+.hintLine strong {
+  color: #B0C4D8;
+}
+
+/* ── Copyright ── */
+.copyright {
   text-align: center;
-  margin-top: 2rem;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.3);
-  line-height: 1.6;
+  font-size: 0.7rem;
+  color: rgba(122, 139, 160, 0.5);
+  margin: 0;
 }
 
-.hint code {
-  background: rgba(255,255,255,0.08);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.7rem;
+/* ── Hint (old) ── */
+.hint {
+  font-size: 0.75rem;
+  color: rgba(122, 139, 160, 0.5);
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .card {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+  .title { font-size: 1.9rem; }
 }
