@@ -194,6 +194,32 @@
   padding-left: 2rem;
 }
 
+/* ── Admin link — special style ── */
+.adminLink {
+  color: #FF6B00 !important;
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  border-radius: 8px;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  padding: 0.4rem 0.8rem !important;
+  background: rgba(255, 107, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.adminLink:hover {
+  background: rgba(255, 107, 0, 0.14) !important;
+  border-color: rgba(255, 107, 0, 0.5) !important;
+  color: #FF8C3A !important;
+}
+
+.adminLink::after { display: none !important; }
+
+.mobileAdminLink {
+  color: #FF6B00 !important;
+  border-left: 3px solid #FF6B00 !important;
+  font-weight: 600 !important;
+}
+
 @media (max-width: 1024px) {
   .links { display: none; }
   .hamburger { display: flex; }

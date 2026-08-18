@@ -64,6 +64,14 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              href="/admin/login"
+              className={`${styles.link} ${styles.adminLink} ${pathname.startsWith('/admin') ? styles.active : ''}`}
+            >
+              🔐 Admin
+            </Link>
+          </li>
         </ul>
 
         {/* CTA */}
@@ -95,6 +103,12 @@ export default function Navbar() {
             {label}
           </Link>
         ))}
+        <Link
+          href="/admin/login"
+          className={`${styles.mobileLink} ${styles.mobileAdminLink} ${pathname.startsWith('/admin') ? styles.mobileActive : ''}`}
+        >
+          🔐 Admin Panel
+        </Link>
         <Link href="/contact" className="btn btn-primary" style={{ margin: '1rem 1.5rem 0' }}>
           Get Free Quote
         </Link>
